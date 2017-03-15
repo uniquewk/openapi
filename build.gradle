@@ -1,0 +1,55 @@
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+
+// 设置 JDK 版本
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+def _version = '0.0.2'
+// 设置编译使用utf-8编码
+tasks.withType(JavaCompile) {
+	options.encoding = "UTF-8"
+}
+
+repositories {
+	// 中央仓库
+	mavenCentral()
+	// 本地私服
+    //maven {
+      // url "http://maven.fishsaying.com/nexus/content/groups/public/"
+    //}
+}
+
+dependencies {
+	compile "com.squareup.okhttp:okhttp:2.2.0"
+    testCompile "junit:junit:4.12"
+}
+
+task apiJar(type: Jar) {
+    baseName "fishsaying"
+    from sourceSets.main.output
+}
+
+publishing {
+    publications {
+        api(MavenPublication) {
+            groupId 'com.fishsaying.oauth'
+            artifactId 'fs-sdk-oauth'
+            version _version
+
+            from components.java
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            // 公网maven私服
+           url "http://maven.fishsaying.com/nexus/content/repositories/thirdparty/"
+            credentials {
+                username 'admin'
+                password 'yushuo@77714'
+            }
+        }
+    }
+}
