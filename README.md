@@ -31,8 +31,7 @@ repositories {
     }
 }
 ```
-到项目到build.gradle中
------ 
+到项目到build.gradle中 
 
 简介
 ===
