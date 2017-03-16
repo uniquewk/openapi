@@ -1,5 +1,7 @@
 package com.fishsaying.oauth.client;
 
+import java.io.IOException;
+
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -31,20 +33,24 @@ public class FsAuthorization {
 		// https://api.fishsaying.com/oauth/token?client_id=fs349330887550177280&client_secret=JTbH3VYinLfvwMp8Aj88Z861bUSWYH1Y&grant_type=client_credentials&scope=read
 		// 获取httpclient
 		OkHttpClient client = HttpClientFactory.INSTANCE.createClient();
-		StringBuilder strb = new StringBuilder();
-		strb.append(ACCESS_TOKEN_URL);
-		strb.append("?");
-		strb.append("client_id=");
-		strb.append(clientId);
-		strb.append("&");
-		strb.append("client_secret=");
-		strb.append(clientSecret);
-		strb.append("&grant_type=client_credentials&scope=read");
-		Request request = new Request.Builder().url(strb.toString()).post(null)
+		final StringBuilder content = new StringBuilder();
+		content.append(ACCESS_TOKEN_URL);
+		content.append("?");
+		content.append("client_id=");
+		content.append(clientId);
+		content.append("&");
+		content.append("client_secret=");
+		content.append(clientSecret);
+		content.append("&grant_type=client_credentials&scope=read");
+		Request request = new Request.Builder().url(content.toString()).post(null)
 				.addHeader("cache-control", "no-cache").build();
 
 		Response response = client.newCall(request).execute();
-		return response.body().string();
+		if (response.isSuccessful()) {
+			return response.body().string();
+		} else {
+			throw new IOException("Unexpected code " + response);
+		}
 	}
 
 }
