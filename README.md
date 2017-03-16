@@ -58,7 +58,7 @@ compile com.fishsaying.oauth:fs-sdk-oauth:1.0.0
 
 FishSaying Oauth SDK提供示例程序，方便用户参考或直接使用。您可以通过以下方式获取示例程序：
 
-github查看下载，参考[FishSaying Oauth SDK](https://github.com) 下的src/samples为示例程序，
+github查看下载，参考[FishSaying Oauth SDK](https://code.aliyun.com/fs-backend/fishsaying-oauth-sdk) 下的src/samples为示例程序，
 可以快速使用。
 
 
