@@ -18,7 +18,7 @@ maven工程
 ```
 到项目pom.xml中
 
-grade工程
+gradle工程
 ----
 添加：
 ```
