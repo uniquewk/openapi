@@ -4,7 +4,7 @@ apply plugin: 'maven-publish'
 // 设置 JDK 版本
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-def _version = '0.0.2'
+def _version = '1.0.0'
 // 设置编译使用utf-8编码
 tasks.withType(JavaCompile) {
 	options.encoding = "UTF-8"

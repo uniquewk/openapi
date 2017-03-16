@@ -47,6 +47,7 @@ public class HttpClient4OauthTest {
 	 */
 	@Test
 	public void testGetToken() throws Exception {
+		//https://api.fishsaying.com/oauth/token?client_id=fs349330887550177280&client_secret=JTbH3VYinLfvwMp8Aj88Z861bUSWYH1Y&grant_type=client_credentials&scope=read
 		OkHttpClient client = new OkHttpClient();
 
 		Request request = new Request.Builder()
