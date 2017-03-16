@@ -85,5 +85,6 @@ github查看下载，参考[FishSaying Oauth SDK](https://code.aliyun.com/fs-bac
 | 示例代码       |   示例内容     | 
 | ------------- |:-------------:|
 | GetAccessTokenSample| 获取accessToken|
-|                     |               |
-|                     |               |
+| StoryInfoSample     | 根据ID查询故事详情|
+| StorySearchGeoSample| 根据地理位置查询某范围的故事|
+| StorySearchKeywordSample|关键字查询故事列表|
