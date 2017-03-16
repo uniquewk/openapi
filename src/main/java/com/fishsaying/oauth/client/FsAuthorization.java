@@ -17,8 +17,12 @@ import com.squareup.okhttp.Response;
 public class FsAuthorization {
 
 	private static final String ACCESS_TOKEN_URL = "https://api.fishsaying.com/oauth/token";
-	
-	private static final String GEO_SEARCH_URL = "https://api.fishsaying.com/stories/geo-search";
+
+	private static final String GEO_SEARCH_STORY_URL = "https://api.fishsaying.com/stories/geo-search";
+
+	private static final String KEYWORD_SEARCH_URL = "https://api.fishsaying.com/stories/search";
+
+	private static final String STORY_INFO_URL = "https://gateway-test1.fishsaying.com/stories/";
 
 	/**
 	 * client_credentials 客户端模式获取accessToken
@@ -35,18 +39,85 @@ public class FsAuthorization {
 		// 获取httpclient
 		OkHttpClient client = HttpClientFactory.INSTANCE.createClient();
 		final StringBuilder content = new StringBuilder();
-		content
-		.append(ACCESS_TOKEN_URL)
-		.append("?")
-		.append("client_id=")
-		.append(clientId)
-		.append("&")
-		.append("client_secret=")
-		.append(clientSecret)
-		.append("&grant_type=client_credentials&scope=read");
-		Request request = new Request.Builder().url(content.toString()).post(null)
-				.addHeader("cache-control", "no-cache").build();
+		content.append(ACCESS_TOKEN_URL).append("?").append("client_id=")
+				.append(clientId).append("&").append("client_secret=")
+				.append(clientSecret)
+				.append("&grant_type=client_credentials&scope=read");
+		Request request = new Request.Builder().url(content.toString())
+				.post(null).addHeader("cache-control", "no-cache").build();
 
+		Response response = client.newCall(request).execute();
+		if (response.isSuccessful()) {
+			return response.body().string();
+		} else {
+			throw new IOException("Unexpected code " + response);
+		}
+	}
+
+	/**
+	 * 根据地理位置查询某范围的故事
+	 * 
+	 * @param latitude
+	 *            纬度
+	 * @param longitude
+	 *            经度
+	 * @param radius
+	 *            范围
+	 * @param page
+	 *            页码
+	 * @param limit
+	 *            每页个数
+	 * @param access_token
+	 *            访问资源授权token
+	 * @return
+	 * @throws IOException
+	 */
+	public static String getStoriesByGeoSearch(double latitude,
+			double longitude, int radius, int page, int limit,
+			String access_token) throws IOException {
+		// 获取httpclient
+		OkHttpClient client = HttpClientFactory.INSTANCE.createClient();
+		final StringBuilder content = new StringBuilder();
+		content.append(GEO_SEARCH_STORY_URL).append("?").append("latitude=")
+				.append(latitude).append("&longitude=").append(longitude)
+				.append("&radius=").append(radius).append("&page=")
+				.append(page).append("&limit=").append(limit)
+				.append("&access_token=").append(access_token);
+		Request request = new Request.Builder().url(content.toString()).get()
+				.addHeader("cache-control", "no-cache").build();
+		Response response = client.newCall(request).execute();
+		if (response.isSuccessful()) {
+			return response.body().string();
+		} else {
+			throw new IOException("Unexpected code " + response);
+		}
+	}
+
+	/**
+	 * 关键字查询故事列表
+	 * 
+	 * @param keyword
+	 *            关键字
+	 * @param page
+	 *            页码
+	 * @param limit
+	 *            每页个数
+	 * @param access_token
+	 *            访问资源授权token
+	 * @return
+	 * @throws IOException
+	 */
+	public static String getStoriesByKeyword(String keyword, int page,
+			int limit, String access_token) throws IOException {
+		// 获取httpclient
+		OkHttpClient client = HttpClientFactory.INSTANCE.createClient();
+		final StringBuilder content = new StringBuilder();
+		content.append(KEYWORD_SEARCH_URL).append("?").append("keyword=")
+				.append(keyword).append("&page=").append(page)
+				.append("&limit=").append(limit).append("&access_token=")
+				.append(access_token);
+		Request request = new Request.Builder().url(content.toString()).get()
+				.addHeader("cache-control", "no-cache").build();
 		Response response = client.newCall(request).execute();
 		if (response.isSuccessful()) {
 			return response.body().string();
@@ -56,53 +127,39 @@ public class FsAuthorization {
 	}
 	
 	/**
-	 * 根据地理位置查询某范围的故事
-	 * @param latitude
-	 *        纬度
-	 * @param longitude
-	 * 		  经度
-	 * @param radius
-	 * 		  范围
-	 * @param page
-	 *        页码
-	 * @param limit
-	 * 		  每页个数
+	 * 根据ID查询故事详情
+	 * @param id
+	 *        故事id
 	 * @param access_token
-	 * 		  访问资源授权token
+	 * 		访问资源授权token
 	 * @return
-	 * @throws IOException 
+	 * @throws IOException
 	 */
-	public static String getStoriesByGeoSearch(double latitude,double longitude,int radius,int page ,int limit,String access_token) throws IOException{
-		// 获取httpclient
+	public static String getStoryInfoById(String id, String access_token)
+			throws IOException {
 		OkHttpClient client = HttpClientFactory.INSTANCE.createClient();
+
 		final StringBuilder content = new StringBuilder();
-		content
-		.append(GEO_SEARCH_URL)
-		.append("?")
-		.append("latitude")
-		.append(latitude)
-		.append("&longitude=")
-		.append(longitude)
-		.append("&radius=")
-		.append(radius)
-		.append("&page=")
-		.append(page)
-		.append("&limit=")
-		.append(limit)
-		.append("&access_token=")
-		.append(access_token);
+
+		content.append(STORY_INFO_URL)
+		       .append(id)
+		       .append("?access_token=")
+			   .append(access_token);
+
 		Request request = new Request.Builder()
-		  .url(content.toString())
-		  .get()
-		  .addHeader("cache-control", "no-cache")
-		  .addHeader("postman-token", "2ced3c0f-28cc-c8b4-ae30-2ced28ec065b")
-		  .build();
+				.url(content.toString())
+		        .get()
+				.addHeader("cache-control", "no-cache")
+				.build();
+
 		Response response = client.newCall(request).execute();
+
 		if (response.isSuccessful()) {
 			return response.body().string();
 		} else {
 			throw new IOException("Unexpected code " + response);
 		}
+
 	}
 
 }
