@@ -7,7 +7,7 @@ import com.fishsaying.oauth.client.FsAuthorization;
  * @author wangkai
  * @2017年3月16日 上午11:21:22
  * <p>
- * 根据地理位置查询某范围的故事 demo
+ * 关键字查询故事列表 demo
  * </p>
  */
 public class StorySearchKeywordSample {
