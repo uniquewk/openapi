@@ -61,5 +61,13 @@ FishSaying Oauth SDK提供示例程序，方便用户参考或直接使用。您
 github查看下载，参考[FishSaying Oauth SDK](https://code.aliyun.com/fs-backend/fishsaying-oauth-sdk) 下的src/samples为示例程序，
 可以快速使用。
 
+-----
+示例包括以下内容：
+
+ | 示例文件 | 示例内容 |
+ | ------------------ |------------- |
+ |GetAccessTokenSample|获取accessToken|
+ 
+
 
 
