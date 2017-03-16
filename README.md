@@ -4,15 +4,34 @@
 
 SDK下载
 ===
+maven工程
+----
+添加：
 ```
-<dependency>
-  <groupId>com.fishsaying.oauth</groupId>
-  <artifactId>fs-sdk-oauth</artifactId>
-  <version>1.0.0</version>
-</dependency>
+<repositories>
+	<repository>
+		<id>nexus-repos</id>
+		<name>Team Nexus Repository</name>
+		<url>http://maven.fishsaying.com/nexus/content/groups/public/</url>
+	</repository>
+</repositories>
 ```
+到项目pom.xml中
 
------ 
+gradle工程
+----
+添加：
+```
+repositories {
+	// 中央仓库
+	mavenCentral()
+	// 本地私服
+    maven {
+      url "http://maven.fishsaying.com/nexus/content/groups/public/"
+    }
+}
+```
+到项目到build.gradle中 
 
 简介
 ===
@@ -64,9 +83,11 @@ github查看下载，参考[FishSaying Oauth SDK](https://code.aliyun.com/fs-bac
 -----
 示例包括以下内容：
 
- | 示例文件 | 示例内容 |
- | ------------------ |------------- |
- |GetAccessTokenSample|获取accessToken|
+| 示例代码       |   示例内容     | 
+| ------------- |:-------------:|
+| GetAccessTokenSample| 获取accessToken|
+|                     |               |
+|                     |               |
  
 
 

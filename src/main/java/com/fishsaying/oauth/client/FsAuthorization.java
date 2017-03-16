@@ -30,7 +30,6 @@ public class FsAuthorization {
 	 */
 	public static String getAccessToken4ClientCredentials(String clientId,
 			String clientSecret) throws Exception {
-		// https://api.fishsaying.com/oauth/token?client_id=fs349330887550177280&client_secret=JTbH3VYinLfvwMp8Aj88Z861bUSWYH1Y&grant_type=client_credentials&scope=read
 		// 获取httpclient
 		OkHttpClient client = HttpClientFactory.INSTANCE.createClient();
 		final StringBuilder content = new StringBuilder();
