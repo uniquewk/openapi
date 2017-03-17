@@ -1,6 +1,6 @@
 package com.fishsaying.oauth.samples;
 
-import com.fishsaying.oauth.client.FsAuthorization;
+import com.fishsaying.oauth.client.FsSourcesApi;
 
 /**
  * 
@@ -18,7 +18,7 @@ public class StoryInfoSample {
 	 */
 	public static void main(String[] args) {
 		try {
-			String resJson = FsAuthorization.getStoryInfoById("569e37d37f9440933c8b6446", "927e0736-636b-48cd-8850-f6048dd14831");
+			String resJson = FsSourcesApi.getStoryInfoById("569e37d37f9440933c8b6446", "927e0736-636b-48cd-8850-f6048dd14831");
 			System.out.println(resJson);
 		} catch (Exception e) {
 			e.printStackTrace();

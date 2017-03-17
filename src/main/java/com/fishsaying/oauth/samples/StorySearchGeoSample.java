@@ -1,6 +1,6 @@
 package com.fishsaying.oauth.samples;
 
-import com.fishsaying.oauth.client.FsAuthorization;
+import com.fishsaying.oauth.client.FsSourcesApi;
 
 /**
  * 
@@ -18,7 +18,7 @@ public class StorySearchGeoSample {
 	 */
 	public static void main(String[] args) {
 		try {
-			String resJson = FsAuthorization.getStoriesByGeoSearch(24.8459, 104.3212, 10000, 1, 20, "0d3f6768-f8a6-4f36-877d-db10de386829");
+			String resJson = FsSourcesApi.getStoriesByGeoSearch(24.8459, 104.3212, 10000, 1, 20, "0d3f6768-f8a6-4f36-877d-db10de386829");
 			System.out.println(resJson);
 		} catch (Exception e) {
 			e.printStackTrace();

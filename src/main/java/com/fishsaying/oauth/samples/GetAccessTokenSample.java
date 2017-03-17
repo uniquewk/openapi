@@ -1,6 +1,6 @@
 package com.fishsaying.oauth.samples;
 
-import com.fishsaying.oauth.client.FsAuthorization;
+import com.fishsaying.oauth.client.FsAuthorizationApi;
 
 /**
  * 
@@ -20,7 +20,7 @@ public class GetAccessTokenSample {
 	 */
 	public static void main(String[] args) {
 		try {
-			String resJson = FsAuthorization.getAccessToken4ClientCredentials(clientId, clientSecret);
+			String resJson = FsAuthorizationApi.getAccessToken4ClientCredentials(clientId, clientSecret);
 			System.out.println(resJson);
 		} catch (Exception e) {
 			e.printStackTrace();
