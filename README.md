@@ -1,4 +1,3 @@
-
 前言
 =
 
@@ -86,9 +85,14 @@ github查看下载，参考[FishSaying Oauth SDK](https://code.aliyun.com/fs-bac
 | 示例代码       |   示例内容     | 
 | ------------- |:-------------:|
 | GetAccessTokenSample| 获取accessToken|
-|                     |               |
-|                     |               |
- 
-
-
+| StoryInfoSample     | 根据ID查询故事详情|
+| StorySearchGeoSample| 根据地理位置查询某范围的故事|
+| StorySearchKeywordSample|关键字查询故事列表|
+| ScenicInfoSample     | 根据ID查询景区详情|
+| ScenicSearchGeoSample| 根据地理位置查询某范围的景区|
+| ScenicSearchKeywordSample|关键字查询景区列表|
+| FigureSearchKeywordSample|关键字查询历史人物列表|
+| FigureInfoSample     | 根据ID查询历史人物详情|
+| StoryUnderScenicSample|景区相关的故事|
+| StoryUnderFigureSample|历史人物相关的故事|
 
